@@ -1,1 +1,99 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Day 4 Assignment 1</title>
+	<script type="text/javascript">
+		function vehicle(name, desc, cost, vtype) {
+			this.name = name;
+			this.desc = desc;
+			this.cost = cost;
+			this.vtype = vtype;
+		}
+
+		function fourWheeler(name, desc, cost, vtype){
+			var fw = new vehicle(name, desc, cost, vtype);
+			fw.fuel = "CNG" ; 
+			return fw;
+		}
+
+		function twoWheeler(name, desc, cost, vtype){
+			var tw = new vehicle(name, desc, cost, vtype);
+			return tw;
+		}
+
+		function display(){
+
+			var getVType = document.getElementById('vehicleType');
+			var tValue = getVType.options[getVType.selectedIndex].value;
+
+			console.log(tValue);
+
+			var name = document.getElementById("name").value;
+			var desc = document.getElementById("description").value;
+			var cost = document.getElementById("costPerKM").value 
+
+			if(tValue === 'Four Wheeler'){
+				var fw = new fourWheeler(name, desc, cost, tValue);
+				document.getElementById("d_name").innerHTML = fw.name;
+				document.getElementById("d_desc").innerHTML = fw.desc;
+				document.getElementById("d_cost").innerHTML = fw.cost;
+				document.getElementById("d_type").innerHTML = tValue;
+				document.getElementById("d_fuel").innerHTML = fw.fuel;
+				return false;
+			} else {
+				var tw = new twoWheeler(name, desc, cost, tValue);
+				document.getElementById("d_name").innerHTML = tw.name;
+				document.getElementById("d_desc").innerHTML = tw.desc;
+				document.getElementById("d_cost").innerHTML = tw.cost;
+				document.getElementById("d_type").innerHTML = tValue;
+				document.getElementById("d_fuel").innerHTML = "Not Defined";
+				return false;
+			}
+			return false;
+		}
+
+
+	</script>
+</head>
+<body>
+	<h1>Enter Form Details to be Displayed</h1>
+	<!-- Form Input fields to be displayed starts here -->
+	<form onsubmit="return display();">
+		<table>
+			<tr>
+				<td>Name : </td>
+				<td><input type="text" id="name" placeholder="Name" ></td>
+			</tr>
+			<tr>
+				<td>Description : </td>
+				<td><input type="text" id="description" placeholder="description"></td>
+			</tr>
+			<tr>
+				<td>Cost/KM : </td>
+				<td><input type="text" id="costPerKM" placeholder="cost/KM"></td>
+			</tr>
+			<tr>
+				<td>Vehicle Type : </td>
+				<td><select id="vehicleType">
+					<option>Two Wheeler</option>
+					<option>Four Wheeler</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="submit"></td>
+			</tr>
+		</table>		
+	</form>
+
+	<!-- Form Data to be displayed in here -->
+	<h3>Details Entered Are</h3>
+	Name : <b><span id="d_name"></span></b> <br>
+	Description : <b><span id="d_desc"></span></b> <br>
+	Cost/KM : <b><span id="d_cost"></span></b> <br>
+	Vehicle Type: <b><span id="d_type"></span></b> <br>
+	Fule Type : <b><span id="d_fuel"></span></b>
+
+	
+</body>
+</html>
